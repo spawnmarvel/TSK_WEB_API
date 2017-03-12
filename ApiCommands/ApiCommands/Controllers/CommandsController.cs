@@ -4,6 +4,7 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using ApiCommands.Models;
 
 namespace ApiCommands.Controllers
 {
@@ -14,7 +15,16 @@ namespace ApiCommands.Controllers
         [Route("GetData")]
         public string GetData()
         {
-            string res = "Fetching all data...";
+            string res = "";
+            List<Item> l = new List<Item>();
+            Item a = new Item(1, "TAG 1", 2, "Process");
+            Item b = new Item(2, "TAG 2", 2, "Calculate");
+            l.Add(a);
+            l.Add(b);
+            foreach (Item i in l)
+            {
+                res += i.ToString();
+            }
             return res;
         }
 
@@ -34,10 +44,6 @@ namespace ApiCommands.Controllers
             return "Get data by id " + id;
         }
 
-        //http://localhost:56777/api/commands/getdata
-        //http://localhost:56777/api/commands/getnodeb
-        //http://localhost:56777/api/commands/getnodea
-        //http://localhost:56777/api/commands/100
 
     }
 }
